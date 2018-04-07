@@ -37,3 +37,19 @@ body {
     margin-bottom: 2vmin;
     margin-left: 2vmin;
 }
+.article {
+    margin: 6vmin;
+    width: 75vw;
+    padding: 2vmin;
+}
+
+.article .title {
+    font-family: 'Arvo', serif;
+    font-size: 6vmin;
+    margin-left: 4vmin;    
+}
+
+.article .content {
+    margin-bottom: 4vmin;
+    margin-left: 4vmin;
+}
