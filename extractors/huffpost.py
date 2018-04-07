@@ -14,7 +14,7 @@ subtitle = (soup.find('h2',class_='headline__subtitle')).get_text().strip()
 para = soup.find("div","post-contents").find_all("p")
 story=""
 
-
+save = ""
 image = (soup.find_all('img',class_='image__src'))
 for i in image:
 	cur=i['src']
@@ -24,8 +24,9 @@ for i in image:
 	width, height = img.size
 	img = img.resize((320,int((320*height)/width)), Image.ANTIALIAS)
 	img.save(fullfilename)
-
+	save = save + str(fullfilename)
+	save = save + ","
 for x in para:
 	if x.string is not None:
 		story=story+"<p>"+x.get_text().strip()+"</p>"
-push_to_database(headline,subtitle,story,1,url)
+push_to_database(headline,subtitle,story,1,url,save)
