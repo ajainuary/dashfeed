@@ -1,16 +1,15 @@
 import requests
-import csv
 import re
 from bs4 import BeautifulSoup
-req = requests.get('https://www.reuters.com/article/us-ibm-blockchain/ibm-joins-group-building-a-blockchain-based-global-identity-network-idUSKCN1HC2LM')
-#The category must be extracted from the URL itself
+from inserttodatabase import push_to_database
+url='https://www.reuters.com/article/us-ibm-blockchain/ibm-joins-group-building-a-blockchain-based-global-identity-network-idUSKCN1HC2LM'
+req = requests.get(url)
 soup = BeautifulSoup(req.text, 'html.parser')
-title = soup.find('h1', attrs={'class': re.compile('headline.*')})
-print("Title :", title.string)
+title = soup.find('h1', attrs={'class': re.compile('headline.*')}).get_text().strip()
 content = soup.find('div', attrs={'class': re.compile('body.*')})
-subtitle = content.find('p')
-print("Subtitle :", subtitle.text.strip())
-print("Content :")
+subtitle = content.find('p').get_text().strip()
 para = content.findAll('p')
+story=""
 for x in para:
-	print(x.text.strip())
+	story=story+x.get_text().strip()
+push_to_database(title,subtitle,story,1,url)
