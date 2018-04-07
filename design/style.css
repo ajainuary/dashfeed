@@ -4,12 +4,14 @@ body {
     font-size: 3vmin;
     background: #EEEEEE;
     margin: 2vmin;
-    padding: 2vmin;
+    padding-top: 6vmin;
+}
+.click {
+    font-size: 3vmin;
 }
 .logo {
     font-family: 'Kelly Slab', cursive;
     font-size: 6vmin;
-    margin: 2vmin;
 }
 .news {
     display: flex;
