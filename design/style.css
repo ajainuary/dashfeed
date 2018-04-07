@@ -4,12 +4,14 @@ body {
     font-size: 3vmin;
     background: #EEEEEE;
     margin: 2vmin;
-    padding: 2vmin;
+    padding-top: 6vmin;
+}
+.click {
+    font-size: 3vmin;
 }
 .logo {
     font-family: 'Kelly Slab', cursive;
     font-size: 6vmin;
-    margin: 2vmin;
 }
 .news {
     display: flex;
@@ -34,4 +36,20 @@ body {
 .subtitle {
     margin-bottom: 2vmin;
     margin-left: 2vmin;
+}
+.article {
+    margin: 6vmin;
+    width: 75vw;
+    padding: 2vmin;
+}
+
+.article .title {
+    font-family: 'Arvo', serif;
+    font-size: 6vmin;
+    margin-left: 4vmin;    
+}
+
+.article .content {
+    margin-bottom: 4vmin;
+    margin-left: 4vmin;
 }
