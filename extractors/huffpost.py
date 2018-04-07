@@ -10,5 +10,5 @@ para = soup.find("div","post-contents").find_all("p")
 story=""
 for x in para:
 	if x.string is not None:
-		story=story+x.get_text().strip()
+		story=story+"<p>"+x.get_text().strip()+"</p>"
 push_to_database(headline,subtitle,story,1,url)

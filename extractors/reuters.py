@@ -11,5 +11,6 @@ subtitle = content.find('p').get_text().strip()
 para = content.findAll('p')
 story=""
 for x in para:
-	story=story+x.get_text().strip()
+	if x.string is not None:
+		story=story+"<p>"+x.get_text().strip()+"</p>"
 push_to_database(title,subtitle,story,1,url)
