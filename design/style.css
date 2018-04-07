@@ -1,0 +1,37 @@
+body {
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 3vmin;
+    background: #EEEEEE;
+    margin: 2vmin;
+    padding: 2vmin;
+}
+.logo {
+    font-family: 'Kelly Slab', cursive;
+    font-size: 6vmin;
+    margin: 2vmin;
+}
+.news {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 1vmin;
+}
+.sub-article {
+    margin: 6vmin;
+    width: 25vw;
+    padding: 2vmin;
+}
+.sub-article .image {
+    display: block;
+}
+.title {
+    font-family: 'Arvo', serif;
+    font-size: 5vmin;
+    margin-left: 2vmin;
+}
+.subtitle {
+    margin-bottom: 2vmin;
+    margin-left: 2vmin;
+}
