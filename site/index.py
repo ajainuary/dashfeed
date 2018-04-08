@@ -8,4 +8,5 @@ def article(id):
 	cursor = info.cursor()
 	cursor.execute("SELECT * FROM NEWS WHERE id = %d" % id)
 	cont = cursor.fetchone()
-	return render_template('article.html', title=cont[1], content=cont[3])
+	img = cont[7].split()
+	return render_template('article.html', title=cont[1], content=cont[3], image=img[0])

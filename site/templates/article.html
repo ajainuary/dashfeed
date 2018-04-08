@@ -27,6 +27,8 @@
                         <button class="mdc-button mdc-card__action mdc-card__action--button click">Related</button>
                 </div>
                 <h2 class="title">{{ title }}</h2>
+                <h1>{{ image }}</h1>
+                <div class="mdc-card__media mdc-card__media--16-9 image" style="background-image: url({{ url_for('static', filename=image) }});"></div>
                 <div class="content">
                     {{ content | safe }}
                 </div>            
