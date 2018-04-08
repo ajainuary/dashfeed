@@ -36,7 +36,6 @@ for i in image:
 	img.save(fullfilename)
 	save = save + str(fullfilename)
 	save = save + ","
-	print (save)
 for x in para:
 	if x.string is not None:
 		story=story+"<p>"+x.get_text().strip()+"</p>"
