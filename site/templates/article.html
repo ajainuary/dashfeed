@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DashFeed - Uncluttered News</title>
+    <meta charset="UTF-8" />
+    <meta name="application-name" content="DashFeed">
+    <meta name="description" content="An uncluttered news aggregator for the modern era." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" sizes="32x32">
+    <link rel="stylesheet" href="{{ url_for('static', filename='card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kelly+Slab&text=DashFed&effect=3d">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo|Raleway">
+</head>
+
+<body>
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+        <span class="mdc-toolbar__title logo">
+            <div class="font-effect-3d">DashFeed</div>
+        </span>
+    </header>
+    <div class="news">
+        <div class="mdc-card article">
+                <div class="mdc-card__actions">
+                        <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button click">Related</button>
+                </div>
+                <h2 class="title">{{ title }}</h2>
+                <div class="content">
+                    {{ content | safe }}
+                </div>            
+        </div>                       
+    </div>
+    <script src="material-components-web.js" async></script>
+    <script src="common.js" async></script>
+</body>
+
+</html>
