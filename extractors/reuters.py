@@ -25,7 +25,6 @@ for i in links:
 			temp2 = i.find('img')
 			cur = 'https:'+temp2['src']
 			cur = cur.replace('w=20', 'w=640')
-			print(cur)
 			curtime = str(time())
 			fullfilename = os.path.join('../site/static/', curtime+".jpg")
 			urllib.request.urlretrieve(cur,fullfilename)
