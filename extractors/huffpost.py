@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from inserttodatabase import push_to_database
 import urllib.request
 import os
-from PIL import Image
 from time import time
 
 
@@ -16,7 +15,6 @@ for i in links:
 		url = 'http://www.huffingtonpost.in'+i['href']
 		newresponse = requests.get(url)
 		soup = BeautifulSoup(newresponse.content,'html.parser')
-		print(url)
 		headline = (soup.find('h1',class_='headline__title')).get_text().strip()
 		subtitle = (soup.find('h2',class_='headline__subtitle')).get_text().strip()
 		para = soup.find("div","post-contents").find_all("p")
@@ -28,10 +26,6 @@ for i in links:
 			curtime = str(time())
 			fullfilename = os.path.join('../site/static/', curtime+".jpg")
 			urllib.request.urlretrieve(cur,fullfilename)
-			img = Image.open(fullfilename)
-			width, height = img.size
-			img = img.resize((320,int((320*height)/width)), Image.ANTIALIAS)
-			img.save(fullfilename)
 			save = save + str(curtime+".jpg")
 			save = save + ","
 		for x in para:
