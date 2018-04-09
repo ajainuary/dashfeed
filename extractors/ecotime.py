@@ -5,37 +5,35 @@ import urllib.request
 import os
 from time import time
 
-
-url = 'http://www.foxnews.com'
+url = 'https://economictimes.indiatimes.com/'
 response = requests.get(url)
 re = BeautifulSoup(response.content, 'html.parser')
-links = re.find_all('article')
+aux = re.find('div',class_='tabsContent')
+links = aux.find_all('li')
 for i in links:
 	try:
-		curitem = i.find('a')
-		url = curitem['href']
+		cur = i.find('a')
+		url = 'https://economictimes.indiatimes.com'+cur['href']
 		newresponse = requests.get(url)
 		soup = BeautifulSoup(newresponse.content,'html.parser')
-		headline = (soup.find('h1',class_='headline head1')).get_text().strip()
-		subtitle = soup.find("div","article-body").find("p").get_text().strip()
-		para = soup.find("div","article-body").find_all("p")
-		story=""
+		headline = (soup.find('h1',class_='clearfix title')).get_text().strip()
+		subtitle = (soup.find('figcaption')).get_text().strip()
+		para = soup.find("div",class_='section1').get_text().strip()
 		save = ""
-		image = (soup.find_all('div','embed-media fn-video'))
+		story = ""
+		story = soup.find("div",class_="Normal").get_text().strip()
+		image = soup.find_all('figure')
 		for i in image:
 			temp = i.find('img')
 			cur = temp['src']
+			cur = cur.replace('width-300', 'width-600')
 			curtime = str(time())
 			fullfilename = os.path.join('../site/static', curtime+".jpg")
 			urllib.request.urlretrieve(cur,fullfilename)
 			save = save + str(curtime+".jpg")
 			save = save + ","
-		for x in para:
-			if x.string is not None:
-				story=story+"<p>"+x.get_text().strip()+"</p>"
-		print(url)
 		if save == "" or story == "":
 			raise Exception('No image')
-		push_to_database(headline,subtitle,story,1,url,save)
+		push_to_database(headline,subtitle,para,1,url,save)
 	except:
 		pass
