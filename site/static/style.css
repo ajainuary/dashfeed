@@ -5,6 +5,7 @@ body {
     background: #EEEEEE;
     margin: 2vmin;
     padding-top: 6vmin;
+    color: #212121;
 }
 .click {
     font-size: 3vmin;
@@ -21,8 +22,9 @@ body {
     padding: 1vmin;
 }
 .sub-article {
-    margin: 6vmin;
-    width: 25vw;
+    flex: auto;
+    margin: 4vmin;
+    width: 27vw;
     padding: 2vmin;
 }
 .sub-article .image {
