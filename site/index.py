@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+import tagsearch
 import sqlite3
 app = Flask(__name__)
 @app.route('/article/<int:id>')
@@ -19,4 +20,4 @@ def home():
 	return render_template('index.html', info=cont)
 @app.route('/tag/<string:tag>')
 def tagView(tag):
-	return render_template('index.html', info=searchfunc(tag))
+	return render_template('index.html', info=tagsearch.searchfunc(tag))
