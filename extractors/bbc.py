@@ -4,11 +4,12 @@ from inserttodatabase import push_to_database
 import urllib.request
 import os
 from time import time
+import re
 
 url = 'http://www.bbc.com/news'
 response = requests.get(url)
-re = BeautifulSoup(response.content, 'html.parser')
-links = re.find_all('a',class_='gs-c-promo-heading nw-o-link-split__anchor gs-o-faux-block-link__overlay-link gel-pica-bold')
+ret = BeautifulSoup(response.content, 'html.parser')
+links = ret.find_all('a',class_='gs-c-promo-heading nw-o-link-split__anchor gs-o-faux-block-link__overlay-link gel-pica-bold')
 for i in links:
 	try:
 		url = 'http://www.bbc.com'+i['href']
@@ -20,6 +21,9 @@ for i in links:
 		story=""
 		save = ""
 		image = (soup.find_all('img',class_='js-image-replace'))
+		save = ""
+		tags = re.sub('(.*):\/\/(.*)\/','',url)
+		tags = re.sub('-(.*)$','',tags)
 		for i in image:
 			cur=i['src']
 			curtime = str(time())
@@ -32,6 +36,8 @@ for i in links:
 				story=story+"<p>"+x.get_text().strip()+"</p>"
 		if save == "" or story == "":
 			raise Exception('No image')
-		push_to_database(headline,subtitle,story,1,url,save)
+		print(url)
+		print(tags)
+		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:
 		pass

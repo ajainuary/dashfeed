@@ -4,11 +4,12 @@ from inserttodatabase import push_to_database
 import urllib.request
 import os
 from time import time
+import re
 
 url = 'https://www.reuters.com'
 response = requests.get(url)
-re = BeautifulSoup(response.content, 'html.parser')
-links = re.find_all('div',class_='story-content')
+res = BeautifulSoup(response.content, 'html.parser')
+links = res.find_all('div',class_='story-content')
 for i in links:
 	try:
 		curlink = i.find('a')
@@ -21,6 +22,10 @@ for i in links:
 		story=""
 		save = ""
 		image = (soup.find_all('div',class_='container_1Z7A0'))
+		aux = soup.find('div',class_='channel_4KD-f')
+		tags = aux.find('a').get_text().strip()
+		tags = re.sub(' .*','',tags)
+		tags = tags.lower()
 		for i in image:
 			temp2 = i.find('img')
 			cur = 'https:'+temp2['src']
@@ -35,6 +40,6 @@ for i in links:
 				story=story+"<p>"+x.get_text().strip()+"</p>"
 		if save == "" or story == "":
 			raise Exception('No image')
-		push_to_database(headline,subtitle,story,1,url,save)
+		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:
 		pass

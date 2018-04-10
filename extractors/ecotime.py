@@ -34,6 +34,6 @@ for i in links:
 			save = save + ","
 		if save == "" or story == "":
 			raise Exception('No image')
-		push_to_database(headline,subtitle,para,1,url,save)
+		push_to_database(headline,subtitle,para,1,url,'business',save)
 	except:
 		pass

@@ -20,7 +20,9 @@ for i in links:
 		para = soup.find("div","post-contents").find_all("p")
 		story=""
 		save = ""
-		image = (soup.find_all('img',class_='image_src'))
+		tags = soup.find('span',class_='entry-eyebrow').get_text().strip()
+		tags =tags.lower()
+		image = (soup.find_all('img',class_='image__src'))
 		for i in image:
 			cur=i['src']
 			curtime = str(time())
@@ -33,6 +35,6 @@ for i in links:
 				story=story+"<p>"+x.get_text().strip()+"</p>"
 		if save == "" or story == "":
 			raise Exception('No image')
-		push_to_database(headline,subtitle,story,1,url,save)
+		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:
 		pass
