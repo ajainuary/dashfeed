@@ -5,7 +5,6 @@ body {
     background: #EEEEEE;
     margin: 2vmin;
     padding-top: 6vmin;
-    color: #212121;
 }
 .click {
     font-size: 3vmin;
@@ -21,11 +20,21 @@ body {
     justify-content: center;
     padding: 1vmin;
 }
-.sub-article {
-    flex: auto;
-    margin: 4vmin;
-    width: 27vw;
+.category {
+    align-self: center;
+    display: flex;
+    flex-direction: row; 
+}
+
+.categ {
+    font-family: 'Arvo', serif;    
+    padding-left: 3vmin;
+    padding-right: 3vmin;
     padding: 2vmin;
+}
+.sub-article {
+    margin: 6vmin;
+    width: 25vw;
 }
 .sub-article .image {
     display: block;
@@ -34,10 +43,13 @@ body {
     font-family: 'Arvo', serif;
     font-size: 5vmin;
     margin-left: 2vmin;
+    margin-right: 2vmin;
+    padding: 2vmin;
 }
 .subtitle {
-    margin-bottom: 2vmin;
     margin-left: 2vmin;
+    margin-right: 2vmin;    
+    padding: 2vmin;    
 }
 .article {
     margin: 6vmin;
