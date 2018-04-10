@@ -17,3 +17,6 @@ def home():
 	cursor.execute("SELECT * FROM NEWS")
 	cont = cursor.fetchall()
 	return render_template('index.html', info=cont)
+@app.route('/tag/<string:tag>')
+def tagView(tag):
+	return render_template('index.html', info=searchfunc(tag))
