@@ -33,8 +33,13 @@ for i in links:
 		for x in para:
 			if x.string is not None:
 				story=story+"<p>"+x.get_text().strip()+"</p>"
+		if tags == 'news':
+			tags = 'world'
+		elif tags == 'tech':
+			tags = 'technology'
 		if save == "" or story == "":
 			raise Exception('No image')
+		print (tags)
 		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:
 		pass

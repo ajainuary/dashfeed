@@ -36,8 +36,15 @@ for i in links:
 				story=story+"<p>"+x.get_text().strip()+"</p>"
 		if save == "" or story == "":
 			raise Exception('No image')
-		print(url)
-		print(tags)
+		if tags == 'us' or tags == 'uk' or tags == 'asia':
+			tags = 'world'
+		elif tags == 'science':
+			tags = 'technology'
+		elif tags == 'health':
+			tags = 'lifestyle'
+		if save == "" or story == "":
+			raise Exception('No image')
+		print (tags)
 		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:
 		pass
