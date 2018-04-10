@@ -32,6 +32,11 @@ body {
     padding-right: 3vmin;
     padding: 2vmin;
 }
+
+.categ a {
+    color: inherit;
+    text-decoration: none;
+}
 .sub-article {
     margin: 6vmin;
     width: 25vw;
