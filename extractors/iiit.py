@@ -4,7 +4,6 @@ from inserttodatabase import push_to_database
 import urllib.request
 import os
 from time import time
-import re
 
 for i in 1,2,3:
 	temp = i;
@@ -13,21 +12,18 @@ for i in 1,2,3:
 	ret = BeautifulSoup(response.content, 'html.parser')
 	links = ret.find_all('h4')
 	for i in links:
-		# try:
+		try:
 			aux = i.find('a')
 			url = aux['href']
-			print(url)
 			newresponse = requests.get(url)
 			soup = BeautifulSoup(newresponse.content,'html.parser')
 			headline = (soup.find('h1').get_text().strip())
 			subtitle = "Life at IIIT"
-			para = soup.find("div","story-body__inner").find_all("p")
+			para = soup.find_all('p')
 			story=""
 			save = ""
-			image = (soup.find_all('img',class_='js-image-replace'))
+			image = (soup.find_all('img'))
 			save = ""
-			tags = re.sub('(.*):\/\/(.*)\/','',url)
-			tags = re.sub('-(.*)$','',tags)
 			for i in image:
 				cur=i['src']
 				curtime = str(time())
@@ -40,15 +36,8 @@ for i in 1,2,3:
 					story=story+"<p>"+x.get_text().strip()+"</p>"
 			if save == "" or story == "":
 				raise Exception('No image')
-			if tags == 'us' or tags == 'uk' or tags == 'asia':
-				tags = 'world'
-			elif tags == 'science':
-				tags = 'technology'
-			elif tags == 'health':
-				tags = 'lifestyle'
-			if save == "" or story == "":
-				raise Exception('No image')
-			print (tags)
+			tags = 'iiit'
+			print(url)
 			push_to_database(headline,subtitle,story,1,url,tags,save)
-		# except:
-			# pass
+		except:
+			pass
