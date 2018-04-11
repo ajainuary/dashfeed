@@ -20,39 +20,43 @@
             <div class="font-effect-3d">DashFeed</div>
         </span>
         <div class="mdc-card category">
-            <div class="categ" style="background-color: #F44336">
+            <div class="search-bar">
+                <input type="text" name="search" id="search" class="search" onkeyup="clearHint();">
+                <label id="search-label" for="search" class="search-label">Search</label>
+            </div>
+            <div class="categ" style="background-color: #E57373">
                 <a href="/tag/sports">
                 Sports                    
                 </a>
             </div>
-            <div class="categ" style="background-color: #E91E63">
+            <div class="categ" style="background-color: #F06292">
                 <a href="/tag/entertainment">
                 Entertainment                    
                 </a>
             </div>
-            <div class="categ" style="background-color: #03A9F4;color: #212121">
+            <div class="categ" style="background-color: #4FC3F7;color: #212121">
                 <a href="/tag/technology">
                     Technology                    
                 </a>
             </div>
-            <div class="categ" style="background-color: #009688">
+            <div class="categ" style="background-color: #4DB6AC">
                 <a href="/tag/business">
                 Business                    
                 </a>
             </div>
-            <div class="categ" style="background-color: #4CAF50;color: #212121">
+            <div class="categ" style="background-color: #81C784;color: #212121">
                 <a href="/tag/iiit">
                     IIIT                    
                 </a>
             </div>
-            <div class="categ" style="background-color: #FF9800;color: #212121">
+            <div class="categ" style="background-color: #FFD54F;color: #212121">
+                    <a href="/tag/world">
+                        World                    
+                    </a>
+            </div>
+            <div class="categ" style="background-color: #FFB74D;color: #212121">
                 <a href="/tag/lifestyle">
                     Health &amp; Lifestyle                    
-                </a>
-            </div>
-            <div class="categ" style="background-color: #FFC107;color: #212121">
-                <a href="/tag/world">
-                    World                    
                 </a>
             </div>
         </div>
@@ -77,6 +81,13 @@
     </div>
     <script src="/assets/material-components-web.js" async></script>
     <script src="/assets/common.js" async></script>
+    <script>
+        function clearHint(){
+            var element = document.getElementById("search-label");
+            element.style.transform = "translate(-140%) scale(0.75)";
+            element.style.color = "#FFFFFF";
+        }
+    </script>
 </body>
 
 </html>
