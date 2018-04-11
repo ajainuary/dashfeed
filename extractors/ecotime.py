@@ -19,7 +19,7 @@ for i in links:
 		soup = BeautifulSoup(newresponse.content,'html.parser')
 		headline = (soup.find('h1',class_='clearfix title')).get_text().strip()
 		subtitle = (soup.find('figcaption')).get_text().strip()
-		para = soup.find("div",class_='section1').get_text().strip()
+		para = " " + soup.find("div",class_='section1').get_text().strip() + " "
 		save = ""
 		story = ""
 		story = soup.find("div",class_="Normal").get_text().strip()

@@ -33,7 +33,7 @@ for i in 1,2,3:
 				save = save + ","
 			for x in para:
 				if x.string is not None:
-					story=story+"<p>"+x.get_text().strip()+"</p>"
+					story=story+"<p> "+x.get_text().strip()+" </p>"
 			if save == "" or story == "":
 				raise Exception('No image')
 			push_to_database(headline,subtitle,story,1,url,'iiit',save)

@@ -34,11 +34,13 @@ for i in links:
 			save = save + ","
 		for x in para:
 			if x.string is not None:
-				story=story+"<p>"+x.get_text().strip()+"</p>"
+				story=story+"<p> "+x.get_text().strip()+" </p>"
 		if save == "" or story == "":
 			raise Exception('No image')
 		if tags == 'auto' or tags == 'real-estate':
 			tags = 'business'
+		if tags == 'us':
+			tags = 'world'
 		print(tags)
 		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:

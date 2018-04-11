@@ -32,7 +32,7 @@ for i in links:
 			save = save + ","
 		for x in para:
 			if x.string is not None:
-				story=story+"<p>"+x.get_text().strip()+"</p>"
+				story=story+"<p> "+x.get_text().strip()+" </p>"
 		if tags == 'news':
 			tags = 'world'
 		elif tags == 'tech':
