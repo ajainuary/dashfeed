@@ -18,11 +18,11 @@ for i in 1,2,3:
 			newresponse = requests.get(url)
 			soup = BeautifulSoup(newresponse.content,'html.parser')
 			headline = (soup.find('h1').get_text().strip())
-			subtitle = "Life at IIIT"
-			para = soup.find_all('p')
+			para = soup.find('div',class_='entry-content').find_all('p')
 			story=""
 			save = ""
-			image = (soup.find_all('img'))
+			subtitle = soup.find('p').get_text().strip()
+			image = (soup.find('div',class_='feature-image').find_all('img'))
 			save = ""
 			for i in image:
 				cur=i['src']
@@ -36,7 +36,6 @@ for i in 1,2,3:
 					story=story+"<p>"+x.get_text().strip()+"</p>"
 			if save == "" or story == "":
 				raise Exception('No image')
-			print(url)
 			push_to_database(headline,subtitle,story,1,url,'iiit',save)
 		except:
 			pass
