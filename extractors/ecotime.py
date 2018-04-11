@@ -27,10 +27,10 @@ for i in links:
 		sub = soup.find_all('div',class_='flt navElement relNav')
 		for i in sub:
 			try:
-				subtitle = i.find('a',class_='current').get_text().strip()
+				tags = i.find('a',class_='current').get_text().strip()
 			except:
 				pass
-		subtitle = subtitle.lower()
+		tags = tags.lower()
 		for i in image:
 			temp = i.find('img')
 			cur = temp['src']
@@ -42,12 +42,12 @@ for i in links:
 			save = save + ","
 		if save == "" or story == "":
 			raise Exception('No image')
-		if subtitle == 'tech' or subtitle == 'ites' or subtitle == 'hardware' or subtitle == 'software' or subtitle == 'internet' or subtitle == 'tech and gadgets':
-			subtitle = 'technology'
-		if subtitle == 'industry' or subtitle == 'markets' or subtitle == 'jobs' or subtitle == 'stocks' or subtitle == 'startups' or subtitle == 'energy' or subtitle == 'economy' or subtitle == 'company':
-			subtitle = 'business'
-		if subtitle == 'news' or subtitle == 'international':
-			subtitle = 'world'
-		push_to_database(headline,subtitle,para,1,url,subtitle,save)
+		if tags == 'tech' or tags == 'ites' or tags == 'hardware' or tags == 'software' or tags == 'internet' or tags == 'tech and gadgets':
+			tags = 'technology'
+		if tags == 'industry' or tags == 'markets' or tags == 'jobs' or tags == 'stocks' or tags == 'startups' or tags == 'energy' or tags == 'economy' or tags == 'company':
+			tags = 'business'
+		if tags == 'news' or tags == 'international':
+			tags = 'world'
+		push_to_database(headline,subtitle,para,1,url,tags,save)
 	except:
 		pass
