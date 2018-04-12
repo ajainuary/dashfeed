@@ -21,8 +21,10 @@
         </span>
         <div class="mdc-card category">
             <div class="search-bar">
+                <form action="/search" method="GET">
                 <input type="text" name="search" id="search" class="search" onkeyup="clearHint();">
-                <label id="search-label" for="search" class="search-label">Search</label>
+                <label id="search-label" for="search" class="search-label">Search</label>                    
+            </form>
             </div>
             <div class="categ" style="background-color: #E57373">
                 <a href="/tag/sports">
@@ -73,8 +75,8 @@
                 </div>
             </a>
              <div class="mdc-card__actions">
-                <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button>
-                <button class="mdc-button mdc-card__action mdc-card__action--button click">Related</button>
+                <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button> -->
+                <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Related</button> -->
             </div>
         </div>
         {% endfor %}                                
@@ -84,7 +86,7 @@
     <script>
         function clearHint(){
             var element = document.getElementById("search-label");
-            element.style.transform = "translate(-130%) scale(0.75)";
+            element.style.transform = "translate(-175%)";
             element.style.color = "#FFFFFF";
         }
     </script>

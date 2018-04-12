@@ -18,13 +18,15 @@ body {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+    margin-top: 8vmin;
     padding: 1vmin;
 }
 .category {
     align-self: center;
     display: flex;
     flex-direction: row;
-    background-color: inherit;
+    background-color: #5C6BC0;
+    margin: 1vmin;
 }
 
 .categ {
@@ -64,7 +66,7 @@ body {
     left: 7vmin;
     right: initial;
     position: absolute;
-    bottom: 2vmin;
+    bottom: 2.5vmin;
     color: #000000;
     z-index: 2;
     transition: transform 400ms ease;

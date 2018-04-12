@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 import tagsearch
+import contentsearch
 import sqlite3
 app = Flask(__name__)
 @app.route('/article/<int:id>')
@@ -21,3 +23,8 @@ def home():
 @app.route('/tag/<string:tag>')
 def tagView(tag):
 	return render_template('index.html', info=tagsearch.searchfunc(tag))
+@app.route('/search', methods=['GET'])
+def search():
+	print(request.args)
+	query = request.args['search']
+	return render_template('index.html', info=contentsearch.searchbar(query), query=query)
