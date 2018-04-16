@@ -18,7 +18,7 @@ def home():
 	info = sqlite3.connect('../news.db')
 	cursor = info.cursor()
 	cursor.execute("SELECT * FROM NEWS")
-	cont = cursor.fetchall()
+	cont = reversed(cursor.fetchall())
 	return render_template('index.html', info=cont)
 @app.route('/tag/<string:tag>')
 def tagView(tag):

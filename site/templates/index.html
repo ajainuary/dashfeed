@@ -76,13 +76,13 @@
             </a>
              <div class="mdc-card__actions">
                 <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button> -->
-                <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Related</button> -->
+                <button class="mdc-button mdc-card__action mdc-card__action--button click"> <a href="/tag/{{ item[6] }}">Related</a></button>
             </div>
         </div>
         {% endfor %}                                
     </div>
-    <script src="/assets/material-components-web.js" async></script>
-    <script src="/assets/common.js" async></script>
+    <script src="/static/material-components-web.js" async></script>
+    <script src="/static/common.js" async></script>
     <script>
         function clearHint(){
             var element = document.getElementById("search-label");
