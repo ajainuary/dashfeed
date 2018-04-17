@@ -103,6 +103,7 @@ body {
 }
 
 .article .content {
+    margin-top: 4vmin;
     margin-bottom: 4vmin;
     margin-left: 4vmin;
 }

@@ -12,7 +12,7 @@ def article(id):
 	cursor.execute("SELECT * FROM NEWS WHERE id = %d" % id)
 	cont = cursor.fetchone()
 	img = cont[7].split(',')
-	return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id)
+	return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6])
 @app.route('/')
 def home():
 	info = sqlite3.connect('../news.db')

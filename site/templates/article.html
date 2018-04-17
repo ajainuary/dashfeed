@@ -23,8 +23,8 @@
     <div class="news">
         <div class="mdc-card article">
                 <div class="mdc-card__actions">
-                        <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button>
-                        <button class="mdc-button mdc-card__action mdc-card__action--button click">Related</button>
+                        <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button> -->
+                        <button class="mdc-button mdc-card__action mdc-card__action--button click"><a href="/tag/{{ tag }}">Related</a></button>
                         <div class="fb-like" data-href="http://localhost:5000/article/{{ id }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
                 </div>
                 <h2 class="title">{{ title }}</h2>

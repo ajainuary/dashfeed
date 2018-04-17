@@ -5,3 +5,4 @@ python3 espn.py &
 python3 foxnews.py &
 python3 huffpost.py &
 python3 reuters.py &
+python3 iiit.py &
