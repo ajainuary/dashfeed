@@ -25,6 +25,8 @@ def tagView(tag):
 	return render_template('index.html', info=tagsearch.searchfunc(tag))
 @app.route('/search', methods=['GET'])
 def search():
-	print(request.args)
 	query = request.args['search']
 	return render_template('index.html', info=contentsearch.searchbar(query), query=query)
+@app.route('/signup')
+def signup():
+	return render_template('register.html')
