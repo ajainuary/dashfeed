@@ -36,6 +36,7 @@ for i in links:
 				story=story+"<p> "+x.get_text().strip()+" </p>"
 		if save == "" or story == "":
 			raise Exception('No image')
+		print('espn')
 		push_to_database(headline,subtitle,story,1,url,'sports',save)
 	except:
 		pass

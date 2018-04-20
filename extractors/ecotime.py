@@ -48,6 +48,7 @@ for i in links:
 			tags = 'business'
 		if tags == 'news' or tags == 'international':
 			tags = 'world'
+		print('economic times')
 		push_to_database(headline,subtitle,para,1,url,tags,save)
 	except:
 		pass
