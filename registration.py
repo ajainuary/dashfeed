@@ -13,7 +13,7 @@ def register(email):
 	server.login("dashfeed07@gmail.com", "Dashfeed2018")
 	password =  "".join(choice(characters) for x in range(randint(8, 16)))
 	msg = "Welcome to DashFeed,\nWe're excited to have you onboard our news platform.\nHere's your password (Let's keep it a secret!): "+password
-	message = 'Subject: {}\n\n{}'.format("Welcome to DashFeed",msg )
+	message = 'Subject: {}\n\n{}'.format("Welcome to DashFeed",msg)
 	server.sendmail("dashfeed07@gmail.com",email,message)
 	server.quit()
 	try:
