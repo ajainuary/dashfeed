@@ -47,6 +47,6 @@ for i in links:
 		if save == "" or story == "":
 			raise Exception('No image')
 		push_to_database(headline,subtitle,story,1,url,tags,save)
-		print(tags)
+		print('reuters')
 	except:
 		pass

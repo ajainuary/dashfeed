@@ -41,7 +41,7 @@ for i in links:
 			tags = 'business'
 		if tags == 'us':
 			tags = 'world'
-		print(tags)
+		print('foxnews')
 		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:
 		pass

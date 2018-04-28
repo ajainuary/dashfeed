@@ -44,7 +44,7 @@ for i in links:
 			tags = 'lifestyle'
 		if save == "" or story == "":
 			raise Exception('No image')
-		print (tags)
+		print ('bbc')
 		push_to_database(headline,subtitle,story,1,url,tags,save)
 	except:
 		pass
