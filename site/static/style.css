@@ -6,6 +6,9 @@ body {
     margin: 2vmin;
     padding-top: 6vmin;
 }
+a {
+    text-decoration: inherit;
+}
 .click {
     font-size: 3vmin;
 }
@@ -106,6 +109,8 @@ body {
     margin-top: 4vmin;
     margin-bottom: 4vmin;
     margin-left: 4vmin;
+    line-height: 4.5vh;
+    letter-spacing: 0.05vw;
 }
 
 .email-label {
@@ -187,4 +192,23 @@ body {
     padding: 10px;
     margin-left: 3vw;
     margin-bottom: 3vw;
+}
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    background-color: #CFD8DC;
+}
+.comment {
+    padding: 1vw;
+    margin: 1vw;
+}
+.comment .name {
+    align-self: flex-end;
+}
+
+.pointer {
+    font-family: 'Arvo', serif;
+    font-size: 5vmin;
+    margin-left: 2vw;
 }
