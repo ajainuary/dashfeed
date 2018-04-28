@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kelly+Slab&text=DashFed&effect=3d">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo|Raleway">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 </head>
 
 <body>
@@ -27,26 +22,19 @@
     </header>
     <div class="news">
         <div class="mdc-card article">
-                <h2 class="title" style="margin-left: 5vw;">Login</h2>
-                {% if badPrompt %}
-                <div class="bad-prompt">
-                    Wrong E-Mail or Password!
+                <div class="mdc-card__actions">
+                        <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button> -->
                 </div>
-                {% endif %}
-                {% if goodPrompt %}
-                <div class="good-prompt">
-                    Your Password has been mailed to you.
-                </div>
-                {% endif %}
-                <div class="form">
+                <h2 class="title" style="margin-left: 5vw;">Sign Up</h2>
+                <div class="content">
                         <form action="/login" method="post" id="sign-up">
                             <label id="email-label" for="email" class="email-label">E-Mail &nbsp; : &nbsp; </label>                            
                             <input type="email" name="email" id="email" class="form-email" onkeyup="clearHint();">
                             <label id="password-label" for="password" class="password-label">Password &nbsp; : &nbsp; </label>                            
-                            <input type="password" name="password" id="password" class="form-password" onkeyup="clearHintPassword();">
+                            <input type="password" name="password" id="password" class="form-password" onkeyup="clearHint();">
                             <button class="mdc-button mdc-card__action mdc-card__action--button" type="submit" form="login" style="margin-left: 2vw;">Login</button>                            
                         </form>
-                </div>
+                    </div>
                 </div>
         </div>                       
     </div>
@@ -55,11 +43,6 @@
     <script>
         function clearHint(){
             var element = document.getElementById("email-label");
-            element.style.transform = "translate(-125%)";
-            element.style.color = "inherit";
-        }
-        function clearHintPassword(){
-            var element = document.getElementById("password-label");
             element.style.transform = "translate(-125%)";
             element.style.color = "inherit";
         }
