@@ -27,42 +27,29 @@
     </header>
     <div class="news">
         <div class="mdc-card article">
-                <h2 class="title" style="margin-left: 5vw;">Login</h2>
-                {% if badPrompt %}
-                <div class="bad-prompt">
-                    Wrong E-Mail or Password!
-                </div>
-                {% endif %}
-                {% if goodPrompt %}
-                <div class="good-prompt">
-                    Your Password has been mailed to you.
-                </div>
-                {% endif %}
+                <h2 class="title">Publish Your Article</h2>
                 <div class="form">
-                        <form action="/login" method="post" id="sign-up">
-                            <label id="email-label" for="email" class="email-label">E-Mail &nbsp; : &nbsp; </label>                            
-                            <input type="email" name="email" id="email" class="form-email" onkeyup="clearHint();">
-                            <label id="password-label" for="password" class="password-label">Password &nbsp; : &nbsp; </label>                            
-                            <input type="password" name="password" id="password" class="form-password" onkeyup="clearHintPassword();">
-                            <button class="mdc-button mdc-card__action mdc-card__action--button" type="submit" form="login" style="margin-left: 2vw;">Login</button>                            
-                        </form>
-                </div>
+                    <form method="post" id="publish">
+                        <textarea id="summernote" name="editordata"></textarea>
+                    <button class="mdc-button mdc-card__action mdc-card__action--button" type="submit" form="publish" style="margin-left: 2vw;">Publish</button>                                        
+                    </form>                      
                 </div>
         </div>                       
     </div>
     <script src="{{ url_for('static', filename='material-components-web.js') }}" async></script>
     <script src="{{ url_for('static', filename='common.js') }}" async></script>
+    <div id="fb-root"></div>
     <script>
-        function clearHint(){
-            var element = document.getElementById("email-label");
-            element.style.transform = "translate(-125%)";
-            element.style.color = "inherit";
-        }
-        function clearHintPassword(){
-            var element = document.getElementById("password-label");
-            element.style.transform = "translate(-125%)";
-            element.style.color = "inherit";
-        }
+    $(document).ready(function() {
+        $('#summernote').summernote({height: 300, width: 750,focus: true,toolbar: [
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']]
+  ]});
+      });
     </script>
 </body>
 

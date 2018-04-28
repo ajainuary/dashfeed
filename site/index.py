@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 import tagsearch
 import contentsearch
+import registration
 import sqlite3
 app = Flask(__name__)
 @app.route('/article/<int:id>')
@@ -30,3 +31,14 @@ def search():
 @app.route('/signup')
 def signup():
 	return render_template('register.html')
+@app.route('/new_user', methods=['POST'])
+def newUser():
+	email = request.form['email']
+	registration.register(email)
+	return "Registered!"
+@app.route('/login')
+def login():
+	return render_template('login.html')
+@app.route('/publish')
+def publish():
+	return render_template('publish.html')
