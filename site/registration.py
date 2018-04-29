@@ -20,6 +20,5 @@ def register(email):
 		server.quit()
 		connection.commit()
 	except:
-		print "sdasfasfasfa"
 		return "Already exists"
 
