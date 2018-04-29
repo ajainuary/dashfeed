@@ -21,8 +21,7 @@ a {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    margin-top: 8vmin;
-    padding: 1vmin;
+    margin-top: 9.5vmin;
 }
 .category {
     align-self: center;
@@ -75,7 +74,7 @@ a {
     transition: transform 400ms ease;
 }
 .sub-article {
-    margin: 6vmin;
+    margin: 3vmin;
     width: 25vw;
 }
 .sub-article .image {
@@ -83,18 +82,19 @@ a {
 }
 .title {
     font-family: 'Arvo', serif;
-    font-size: 5vmin;
-    margin-left: 2vmin;
-    margin-right: 2vmin;
-    padding: 2vmin;
+    font-size: 3vmin;
+    margin-left: 1vmin;
+    margin-right: 1vmin;
+    padding: 1vmin;
 }
 .subtitle {
     margin-left: 2vmin;
     margin-right: 2vmin;    
-    padding: 2vmin;    
+    padding: 1vmin;
+    font-size: 1vw;
 }
 .article {
-    margin: 6vmin;
+    margin: 2vmin;
     width: 75vw;
     padding: 2vmin;
 }
