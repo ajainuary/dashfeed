@@ -6,9 +6,11 @@ def validate(username, password):
                 cur = con.cursor()
                 cur.execute("SELECT * FROM users")
                 rows = cur.fetchall()
-                if rows != NULL
+                if rows != NULL:
                     dbUser = row[1]
                     dbPass = row[2]
                     if dbUser==username:
                         completion=check_password(dbPass, password)
     return completion
+def completion(dbPass,password):
+    return dbPass == password
