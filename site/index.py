@@ -5,7 +5,7 @@ import tagsearch
 import contentsearch
 import registration
 import sqlite3
-import login
+import loginUtil
 app = Flask(__name__)
 @app.route('/article/<int:id>')
 def article(id):
@@ -40,19 +40,15 @@ def newUser():
 	return render_template('login.html',goodPrompt=1)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	print request.method
-	error = None
 	if request.method == 'POST':
-		username = request.form['username']
+		username = request.form['email']
 		password = request.form['password']
-		print completion
-		completion = login.validate(username, password)
-		print completion
-		if completion ==False:
-			error = 'Invalid Credentials. Please try again.'
+		completion = loginUtil.validate(username, password)
+		print(username, password, completion)
+		if completion is False:
+			return render_template('login.html', badPrompt=1)
 		else:
-			 return redirect("index.html")
-		return render_template('login.html', error=error)
+			 return render_template("login.html", goodPrompt=1)
 	else:
 		return render_template('login.html')
 @app.route('/secret')
