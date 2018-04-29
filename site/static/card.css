@@ -1094,7 +1094,6 @@ section.example h2 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-size: 0.875rem;
   line-height: 2.25rem;
   font-weight: 500;
   letter-spacing: 0.04em;

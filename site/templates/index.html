@@ -19,7 +19,19 @@
         <span class="mdc-toolbar__title logo">
             <div class="font-effect-3d">DashFeed</div>
         </span>
+        
         <div class="mdc-card category">
+            <div class="categ" style="background-color: #E57373">
+                {% if login %}
+                <a href="/publish">
+                    Publish                    
+                </a>
+                {% else %}
+                <a href="/login">
+                Login                    
+                </a>
+                {% endif %}                
+            </div>
             <div class="search-bar">
                 <form action="/search" method="GET">
                 <input type="text" name="search" id="search" class="search" onkeyup="clearHint();" autocomplete="off">

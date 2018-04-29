@@ -27,10 +27,16 @@
     </header>
     <div class="news">
         <div class="mdc-card article">
-                <h2 class="title">Publish Your Article</h2>
                 <div class="form">
-                    <form method="post" id="publish">
+                    <form method="post" id="publish" enctype = "multipart/form-data">
+                        <label id="title-label" for="title" class="title-label">Publish Your Article</label>                            
+                        <input type="text" name="title" id="title" class="form-title" onkeyup="clearHint();">
+                        <label id="subtitle-label" for="title" class="title-label">Subtitle</label>                            
+                        <input type="text" name="subtitle" id="title" class="form-title" onkeyup="clearHintS();">
                         <textarea id="summernote" name="editordata"></textarea>
+                        <label id="tag-label" for="title" class="title-label">Tag</label>                            
+                        <input type="text" name="tag" id="title" class="form-title" onkeyup="clearHintT();">
+                        <input type = "file" name = "file" />
                     <button class="mdc-button mdc-card__action mdc-card__action--button" type="submit" form="publish" style="margin-left: 2vw;">Publish</button>                                        
                     </form>                      
                 </div>
@@ -50,6 +56,23 @@
     ['height', ['height']]
   ]});
       });
+    </script>
+    <script>
+            function clearHint(){
+                var element = document.getElementById("title-label");
+                element.style.transform = "translate(-105%)";
+                element.style.color = "inherit";
+            }
+            function clearHintS(){
+                var element = document.getElementById("subtitle-label");
+                element.style.transform = "translate(-125%)";
+                element.style.color = "inherit";
+            }
+            function clearHintT(){
+                var element = document.getElementById("tag-label");
+                element.style.transform = "translate(-135%)";
+                element.style.color = "inherit";
+            }
     </script>
 </body>
 

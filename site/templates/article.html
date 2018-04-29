@@ -33,20 +33,32 @@
                     {{ content | safe }}
                 </div>
                 <div class="mdc-card comment-section">
-                    <h2 class="pointer">Comments: </h2>                    
+                    <h2 class="pointer">Comments: </h2>
+                    {% for comment in comments %}                   
                     <div class="mdc-card comment">
-                        Hello World
-                        <div class="name"><i>- Anurag Jain</i></div>
+                        {{ comment[0] }}
+                        <div class="name"><i>- {{ comment[1] }}</i></div>
                     </div>
+                    {% endfor %}
                     <div class="mdc-card comment">
-                            Hello World
-                            <div class="name"><i>- Anurag Jain</i></div>
+                        <form method="post" id="comment">
+                            <label id="comment-label" for="comment" class="comment-label">Have something to say ?</label>                                                        
+                            <textarea name="comment" id="comment" class="form-comment" onkeyup="clearHint();"></textarea>
+                        </form>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button" type="submit" form="comment" style="margin: 2vw;">Post</button>                        
                     </div>
                 </div>
         </div>                       
     </div>
     <script src="{{ url_for('static', filename='material-components-web.js') }}" async></script>
     <script src="{{ url_for('static', filename='common.js') }}" async></script>
+    <script>
+            function clearHint(){
+                var element = document.getElementById("comment-label");
+                element.style.transform = "translate(-200%)";
+                element.style.color = "inherit";
+            }
+    </script>
 </body>
 
 </html>
