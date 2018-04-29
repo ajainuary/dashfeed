@@ -5,12 +5,13 @@ def validate(username, password):
     with con:
         cur = con.cursor()
         cur.execute("SELECT * FROM user")
-        rows = cur.fetchone()
-        if rows != None:
-            dbUser = rows[1]
-            dbPass = rows[2]
-            if dbUser==username:
-                completion=check_password(dbPass, password)
+        rows = cur.fetchall()
+        for row in rows:
+            if row != None:
+             dbUser = row[1]
+             dbPass = row[2]
+             if dbUser==username:
+                 completion=check_password(dbPass, password)
     return completion
 def check_password(dbPass,password):
     print(dbPass, password)
