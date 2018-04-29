@@ -19,6 +19,7 @@ def register(email):
 		server.sendmail("dashfeed07@gmail.com",email,message)
 		server.quit()
 		connection.commit()
+		return True
 	except:
-		return "Already exists"
+		return False
 
