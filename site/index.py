@@ -38,21 +38,26 @@ def newUser():
 	email = request.form['email']
 	registration.register(email)
 	return render_template('login.html',goodPrompt=1)
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     error = None
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']
-#         completion = login.validate(username, password)
-#         if completion ==False:
-#             error = 'Invalid Credentials. Please try again.'
-#         else:
-#             return redirect(url_for('secret'))
-#     return render_template('login.html', error=error)
-# @app.route('/secret')
-# def secret():
-#     return "You have successfully logged in"
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	print request.method
+	error = None
+	if request.method == 'POST':
+		username = request.form['username']
+		password = request.form['password']
+		print completion
+		completion = login.validate(username, password)
+		print completion
+		if completion ==False:
+			error = 'Invalid Credentials. Please try again.'
+		else:
+			 return redirect("index.html")
+		return render_template('login.html', error=error)
+	else:
+		return render_template('login.html')
+@app.route('/secret')
+def secret():
+    return "You have successfully logged in"
 if __name__ == '__main__':
     app.run(debug=True)
 @app.route('/publish')
