@@ -16,4 +16,15 @@ def insert(user_id,news_id):
 		connection.commit()
 	finally:
 		connection.close()
-	 
+def delete(user_id,news_id):
+	connection = sqlite3.connect('../news.db')
+	cursor=connection.cursor()
+	try:
+		cursor.execute('''DELETE FROM news_user where id=? and news_id=?''', ( user_id,news_id))
+		connection.commit()
+		return true
+	except:
+		return false
+	finally:
+		connection.close()
+

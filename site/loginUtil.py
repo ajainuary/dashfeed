@@ -1,4 +1,5 @@
 import sqlite3
+import hashlib
 def validate(username, password):
     con = sqlite3.connect('../news.db')
     completion = None
@@ -16,4 +17,6 @@ def validate(username, password):
                  	return row[0]
     return completion
 def check_password(dbPass,password):
-    return dbPass == password
+	password = hashlib.md5(password.encode())
+	password = password.hexdigest()
+	return dbPass == password
