@@ -6,6 +6,7 @@ import contentsearch
 import registration
 import sqlite3
 import loginUtil
+import readlater
 from flask import session
 from flask import make_response
 from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
@@ -21,21 +22,27 @@ def article(id):
 	cursor.execute("SELECT * FROM NEWS WHERE id = %d" % id)
 	cont = cursor.fetchone()
 	img = cont[7].split(',')
+	rl = request.args.get('readlater')
 	if request.method == 'POST':
 		comment = request.form['comment']
 		cursor.execute('INSERT INTO comment VALUES (?, ?, ?);', (comment, id, session['id'],))
 	cursor.execute("SELECT comment.content, user.email FROM comment JOIN user ON comment.user_id = user.id WHERE comment.article_id = %d" % id)
 	comments = cursor.fetchall()
+	if rl is not None:
+		try:
+			readlater.insert(session['id'], id)
+			return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments, goodPrompt=1)
+		except:
+			return redirect('/login')
 	info.commit()
 	return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments)
 @app.route('/')
 def home():
 	info = sqlite3.connect('../news.db')
 	cursor = info.cursor()
-	cursor.execute("SELECT * FROM NEWS")
-	cont = reversed(cursor.fetchall())
+	cursor.execute("SELECT * FROM NEWS ORDER BY rating DESC;")
+	cont = cursor.fetchall()
 	try:
-		print(session['id'])
 		return render_template('index.html', info=cont, login=True)
 	except:
 		return render_template('index.html', info=cont)
@@ -83,6 +90,9 @@ def publish():
 		cursor.execute('''INSERT INTO NEWS( title, subject, content,rating,link,tags,img)VALUES(?,?,?,?,?,?,?)''', ( title, subtitle, content,0,"dashfeed.com/" + str(last[0]),tag,filename))
 		info.commit()
 	return render_template('publish.html')
+@app.route('/readlater')
+def readLater():
+	return render_template('index.html', info=readlater.fetch(session['id']), login=True)
 if __name__ == '__main__':
     app.run(host='127.0.0.1', debug=True, port=80)
 

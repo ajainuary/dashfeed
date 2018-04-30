@@ -23,10 +23,15 @@
     <div class="news">
         <div class="mdc-card article">
                 <div class="mdc-card__actions">
-                        <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button> -->
                         <button class="mdc-button mdc-card__action mdc-card__action--button click"><a href="/tag/{{ tag }}">Related</a></button>
+                        <button class="mdc-button mdc-card__action mdc-card__action--button click"><a href="?readlater=1">Read It Later</a></button>
                         <iframe src="https://www.facebook.com/plugins/like.php?href={{ url }}&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="450" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                 </div>
+                {% if goodPrompt %}
+                <div class="good-prompt">
+                    Saved for later.
+                </div>
+                {% endif %}
                 <h2 class="title">{{ title }}</h2>
                 <div class="mdc-card__media mdc-card__media--16-9 image" style="background-image: url({{ url_for('static', filename=image) }});"></div>
                 <div class="content">

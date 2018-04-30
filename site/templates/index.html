@@ -32,6 +32,11 @@
                 </a>
                 {% endif %}                
             </div>
+            {% if login %}
+            <div class="categ" style="background-color: #E57373">
+                    <a href="/publish">Bookmarks</a>
+            </div>
+            {% endif %}       
             <div class="search-bar">
                 <form action="/search" method="GET">
                 <input type="text" name="search" id="search" class="search" onkeyup="clearHint();" autocomplete="off">
@@ -70,7 +75,7 @@
             </div>
             <div class="categ" style="background-color: #FFB74D;color: #212121">
                 <a href="/tag/lifestyle">
-                    Health &amp; Lifestyle                    
+                    Lifestyle                    
                 </a>
             </div>
         </div>
@@ -87,7 +92,7 @@
                 </div>
             </a>
              <div class="mdc-card__actions">
-                <!-- <button class="mdc-button mdc-card__action mdc-card__action--button click">Read It Later</button> -->
+                <button class="mdc-button mdc-card__action mdc-card__action--button click"><a href="/article/{{item[0]}}?readlater=1">Read It Later</a></button>
                 <button class="mdc-button mdc-card__action mdc-card__action--button click"> <a href="/tag/{{ item[6] }}">Related</a></button>
             </div>
         </div>
