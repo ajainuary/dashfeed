@@ -23,9 +23,12 @@ def article(id):
 	cont = cursor.fetchone()
 	img = cont[7].split(',')
 	rl = request.args.get('readlater')
-	if request.method == 'POST':
-		comment = request.form['comment']
-		cursor.execute('INSERT INTO comment VALUES (?, ?, ?);', (comment, id, session['id'],))
+	try:
+		if request.method == 'POST':
+			comment = request.form['comment']
+			cursor.execute('INSERT INTO comment VALUES (?, ?, ?);', (comment, id, session['id'],))
+	except:
+		return redirect('/login')
 	cursor.execute("SELECT comment.content, user.email FROM comment JOIN user ON comment.user_id = user.id WHERE comment.article_id = %d" % id)
 	comments = cursor.fetchall()
 	if rl is not None:
@@ -43,6 +46,7 @@ def home():
 	cursor.execute("SELECT * FROM NEWS ORDER BY rating DESC;")
 	cont = cursor.fetchall()
 	try:
+		print(session['id'])
 		return render_template('index.html', info=cont, login=True)
 	except:
 		return render_template('index.html', info=cont)
@@ -78,21 +82,32 @@ def login():
 @app.route('/publish', methods=['GET', 'POST'])
 def publish():
 	if request.method == 'POST':
-		title = request.form['title']
-		subtitle = request.form['subtitle']
-		content = request.form['editordata']
-		tag = request.form['tag']
-		filename = photos.save(request.files['file'])
-		info = sqlite3.connect('../news.db')
-		cursor = info.cursor()
-		cursor.execute("SELECT * FROM news ORDER BY id DESC;")
-		last = cursor.fetchone()
-		cursor.execute('''INSERT INTO NEWS( title, subject, content,rating,link,tags,img)VALUES(?,?,?,?,?,?,?)''', ( title, subtitle, content,0,"dashfeed.com/" + str(last[0]),tag,filename))
-		info.commit()
+		try:
+			title = request.form['title']
+			subtitle = request.form['subtitle']
+			content = request.form['editordata']
+			tag = request.form['tag']
+			filename = photos.save(request.files['file'])
+			info = sqlite3.connect('../news.db')
+			cursor = info.cursor()
+			cursor.execute("SELECT * FROM news ORDER BY id DESC;")
+			last = cursor.fetchone()
+			cursor.execute('''INSERT INTO NEWS( title, subject, content,rating,link,tags,img)VALUES(?,?,?,?,?,?,?)''', ( title, subtitle, content,0,"dashfeed.com/" + str(last[0]),tag,filename))
+			info.commit()
+			return render_template('publish.html', goodPrompt=1)
+		except:
+			return render_template('publish.html', badPrompt=1)
 	return render_template('publish.html')
 @app.route('/readlater')
 def readLater():
 	return render_template('index.html', info=readlater.fetch(session['id']), login=True)
+@app.route('/logout')
+def logOut():
+	try:
+		del session['id']
+	except:
+		pass
+	return redirect('')
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True, port=80)
+    app.run(host='192.168.43.54', port=80)
 

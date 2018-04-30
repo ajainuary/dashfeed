@@ -27,6 +27,16 @@
     </header>
     <div class="news">
         <div class="mdc-card article">
+                {% if badPrompt %}
+                <div class="bad-prompt">
+                    Oops! Looks like you missed something.
+                </div>
+                {% endif %}
+                {% if goodPrompt %}
+                <div class="good-prompt">
+                    Yay! Your article just got published.
+                </div>
+                {% endif %}
                 <div class="form">
                     <form method="post" id="publish" enctype = "multipart/form-data">
                         <label id="title-label" for="title" class="title-label">Publish Your Article</label>                            
