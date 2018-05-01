@@ -12,8 +12,9 @@ def insert(user_id,news_id):
 	connection = sqlite3.connect('../news.db')
 	cursor=connection.cursor()
 	try:
-		cursor.execute('''INSERT INTO  news_user(id,news_id)VALUES(?,?)''', ( user_id,news_id))
-		connection.commit()
+		if status(user_id,news_id) is False:
+			cursor.execute('''INSERT INTO  news_user(id,news_id)VALUES(?,?)''', ( user_id,news_id))
+			connection.commit()
 	finally:
 		connection.close()
 def delete(user_id,news_id):
