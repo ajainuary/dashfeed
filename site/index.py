@@ -22,6 +22,10 @@ def article(id):
 	cursor.execute("SELECT * FROM NEWS WHERE id = %d" % id)
 	cont = cursor.fetchone()
 	img = cont[7].split(',')
+	unrl = request.args.get('unread')
+	if unrl is not None:
+		try:
+			readlater.remove(session['id'], id)
 	rl = request.args.get('readlater')
 	try:
 		if request.method == 'POST':
@@ -43,7 +47,7 @@ def article(id):
 def home():
 	info = sqlite3.connect('../news.db')
 	cursor = info.cursor()
-	cursor.execute("SELECT * FROM NEWS ORDER BY rating DESC;")
+	cursor.execute("SELECT * FROM NEWS ORDER BY rating DESC, id DESC;")
 	cont = cursor.fetchall()
 	try:
 		print(session['id'])
@@ -52,11 +56,19 @@ def home():
 		return render_template('index.html', info=cont)
 @app.route('/tag/<string:tag>')
 def tagView(tag):
-	return render_template('index.html', info=tagsearch.searchfunc(tag))
+	try:
+		print(session['id'])
+		return render_template('index.html', info=tagsearch.searchfunc(tag), login=True)
+	except:
+		return render_template('index.html', info=tagsearch.searchfunc(tag))
 @app.route('/search', methods=['GET'])
 def search():
 	query = request.args['search']
-	return render_template('index.html', info=contentsearch.searchbar(query), query=query)
+	try:
+		print(session['id'])
+		return render_template('index.html', info=contentsearch.searchbar(query), query=query, login=True)
+	except:
+		return render_template('index.html', info=contentsearch.searchbar(query), query=query)
 @app.route('/signup')
 def signup():
 	return render_template('register.html')
@@ -100,7 +112,7 @@ def publish():
 	return render_template('publish.html')
 @app.route('/readlater')
 def readLater():
-	return render_template('index.html', info=readlater.fetch(session['id']), login=True)
+		return render_template('index.html', info=readlater.fetch(session['id']), login=True)
 @app.route('/logout')
 def logOut():
 	try:

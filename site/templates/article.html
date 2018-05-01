@@ -17,14 +17,18 @@
 <body>
     <header class="mdc-toolbar mdc-toolbar--fixed">
         <span class="mdc-toolbar__title logo">
-            <div class="font-effect-3d">DashFeed</div>
-        </span>
+                <div class="font-effect-3d"><a href="/" style="text-decoration: none; text-color: inherit;color: #fff">DashFeed</a></div>
+            </span>
     </header>
     <div class="news">
         <div class="mdc-card article">
                 <div class="mdc-card__actions">
                         <button class="mdc-button mdc-card__action mdc-card__action--button click"><a href="/tag/{{ tag }}">Related</a></button>
+                        {% if saved %}
+                        <button class="mdc-button mdc-card__action mdc-card__action--button click"><a href="?unread=1">Remove Bookmark</a></button>
+                        {% else %}                        
                         <button class="mdc-button mdc-card__action mdc-card__action--button click"><a href="?readlater=1">Read It Later</a></button>
+                        {% endif %}
                         <iframe src="https://www.facebook.com/plugins/like.php?href={{ url }}&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="450" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                 </div>
                 {% if goodPrompt %}

@@ -8,6 +8,7 @@ body {
 }
 a {
     text-decoration: inherit;
+
 }
 .click {
     font-size: 3vmin;
@@ -21,7 +22,7 @@ a {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    margin-top: 9.5vmin;
+    margin-top: 12vmin;
 }
 .category {
     align-self: center;
