@@ -36,6 +36,11 @@
                     Saved for later.
                 </div>
                 {% endif %}
+                {% if badPrompt %}
+                <div class="bad-prompt">
+                    Removed from saved articles.
+                </div>
+                {% endif %}
                 <h2 class="title">{{ title }}</h2>
                 <div class="mdc-card__media mdc-card__media--16-9 image" style="background-image: url({{ url_for('static', filename=image) }});"></div>
                 <div class="content">

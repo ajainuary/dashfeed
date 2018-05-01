@@ -23,9 +23,6 @@ def article(id):
 	cont = cursor.fetchone()
 	img = cont[7].split(',')
 	unrl = request.args.get('unread')
-	if unrl is not None:
-		try:
-			readlater.remove(session['id'], id)
 	rl = request.args.get('readlater')
 	try:
 		if request.method == 'POST':
@@ -38,10 +35,21 @@ def article(id):
 	if rl is not None:
 		try:
 			readlater.insert(session['id'], id)
-			return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments, goodPrompt=1)
+			return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments, goodPrompt=1, saved=1)
 		except:
 			return redirect('/login')
+	if unrl is not None:
+		try:
+			readlater.delete(session['id'], id)
+			return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments, badPrompt=1)
+		except:
+			return redirect('/logout')
 	info.commit()
+	try:
+		if readlater.status(session['id'], id) is True:
+			return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments, saved=1)
+	except:
+		return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments)
 	return render_template('article.html', title=cont[1], content=cont[3], image=img[0], id=id,tag=cont[6], url=cont[5],comments = comments)
 @app.route('/')
 def home():
