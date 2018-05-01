@@ -27,4 +27,19 @@ def delete(user_id,news_id):
 		return false
 	finally:
 		connection.close()
-
+def status(user_id,news_id):
+	con = sqlite3.connect('../news.db')
+    completion = False
+    with con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM news_user")
+        rows = cur.fetchall()
+        for row in rows:
+            if row != None:
+             dbUser = row[0]
+             dbNews = row[1]
+             if dbUser==user_id:
+                 completion=check_newsid(dbNews,news_id)
+    return completion
+def check_newsid(dbNews,news_id):
+	return dbNews == news_id
